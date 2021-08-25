@@ -1,0 +1,68 @@
+
+.box{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	width: 400px;
+	padding: 40px;
+	box-sizing: border-box;
+	border:1px solid rgba(0,0,0,.1);
+	box-shadow: 0 5px 10px rgba(0,0,0,.2);
+	color: #fff;
+}
+.box h2{
+	margin: 0 0 40px;
+	padding: 0;
+	color: #00B8FF;
+	text-transform: uppercase;
+}
+.box input{
+	padding: 10px 0;
+	margin-bottom: 30px;
+    background-color: transparent;
+    color: #fff;
+}
+.box input{
+	width: 100%;
+	box-sizing: border-box;
+	box-shadow: none;
+	outline: none;
+	border:none;
+	border-bottom: 2px solid rgb(243, 240, 240);
+}
+.box input[type="submit"]{
+	border-bottom: none;
+	cursor: pointer;
+	background: #00B8FF;
+	margin-bottom: 0;
+	color: #fff;
+	text-transform: uppercase; 
+}
+.box form div{
+	position: relative;
+}
+.box form div label{
+	position: absolute;
+	top: 10px;
+	left: 0;
+	pointer-events: none;
+	color: rgb(223, 217, 217);
+	transition: .5s;
+}
+.box input:focus ~ label , 
+.box textarea:focus ~ label,
+.box input:valid ~ label , 
+.box textarea:valid ~ label {
+	color: #00B8FF;
+	top: -12px;
+	left: 0;
+	font-weight: bold;
+	font-size: 13px;
+}
+.box input:focus,  
+.box textarea:focus, 
+.box input:valid, 
+.box textarea:valid{
+	border-bottom: 2px solid #00B8FF;
+}

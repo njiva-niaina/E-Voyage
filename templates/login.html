@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Discovery | Sign in
+{% endblock title %}
+{% block content %}
+<div class="nk-main">
+  <div class="nk-fullscreen-block">
+      <div class="nk-fullscreen-block-middle">
+          <div class="container text-center">
+            <div class="box">
+              <h2>Connexion</h2>
+              <form action="{% url 'signin' %}" method="post">
+                {% csrf_token %}
+                {% if messages %}
+                      {% for message in messages %}
+                          {{message}}
+                      {% endfor %}    
+                      <div class="nk-gap"></div>
+                {% endif %}
+                <div>
+                  <input type="text" required="" name="username">
+                  <label>Nom d'utilisateur</label>
+                </div>
+                <div>
+                  <input type="password" required="" name="password">
+                  <label>Mot de passe</label>
+                </div> 
+                <input type="submit" value="Valider" name="">
+                <div class="text-left">
+                  <div class="nk-gap-1"></div>
+                  <a href="{% url 'signup' %}">S'inscrire</a> <br>
+                  <!-- <div class="nk-gap"></div> -->
+                  <a href="{% url 'password_reset' %}">J'ai oublié mon mot de passe</a>
+                </div>
+              </form>
+            </div>
+            <div class="nk-gap-3"></div>
+          </div>
+      </div>
+    </div>
+</div>
+<img class="nk-page-background-fixed" src="{% static './images/bg.jpg' %}" alt="">
+{% endblock content %}

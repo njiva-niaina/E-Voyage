@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Discovery | Inscription
+{% endblock title %}
+{% block content %}
+<div class="nk-main">
+  <div class="nk-fullscreen-block">
+      <div class="nk-fullscreen-block-middle">
+          <div class="container text-center">
+            <div class="box">
+              <h2>Inscription</h2>
+              <form action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                  {% for error in field.errors %}
+                    {{error}}
+                    <div class="nk-gap-1"></div>
+                  {% endfor %}    
+                  <div>
+                    {{field}}
+                    <label for="">{{field.label}}</label>
+                  </div>
+                {% endfor %}    
+                <input type="submit" value="Valider" name="">
+                <div class="text-left">
+                  <div class="nk-gap-1"></div>
+                  <a href="{% url 'signin' %}">Se connecter</a> <br>
+                </div>
+              </form>
+            </div>
+            <div class="nk-gap-3"></div>
+          </div>
+      </div>
+    </div>
+</div>
+<img class="nk-page-background-fixed" src="{% static './images/bg.jpg' %}" alt="">
+{% endblock content %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Discovery | Accueil
+{% endblock title %}
+    
+{% block content %}
+    <header class="nk-header nk-header-opaque">
+        <!-- START: Top Contacts -->
+        <div class="nk-contacts-top">
+            <div class="container">
+                <div class="nk-contacts-left">
+                    <ul class="nk-social-links">
+                        <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
+                        <li><a class="nk-social-twitter" href="https://twitter.com/nkdevv" target="_blank"><span class="fab fa-twitter"></span></a></li>
+                        <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a class="nk-social-instagram" href="#"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- END: Top Contacts -->
+        <!-- START: Navbar -->
+        <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide nk-navbar-transparent">
+            <div class="container">
+                <div class="nk-nav-table">
+                    <a href="" class="nk-nav-logo">
+                        <img src="" alt="" width="199">
+                    </a>
+                    <ul class="nk-nav nk-nav-right d-none d-lg-table-cell" data-nav-mobile="#nk-nav-mobile">
+                        {% if user.is_authenticated %}
+                            <li class="active">
+                                <a href="{% url 'home' %}">Accueil</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'destination' %}">Destination</a>
+                            </li>
+                            <li class=" nk-drop-item">
+                                <a href="">{{user.username}}</a>
+                                <ul class="dropdown">
+                                    <li>
+                                        <a href="{% url 'reservation' %}">Réservation</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'password_change' %}">Changer le mot de passe</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'logout' %}">Se déconnecter</a>
+                                    </li>
+                                </ul>
+                            </li>    
+                        {% else %}
+                            <li class="active">
+                                <a href="{% url 'home' %}">Accueil</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'destination' %}">Destination</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'signin' %}">Se connecter</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'signup' %}">S'inscrire</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <ul class="nk-nav nk-nav-right nk-nav-icons">
+                        <li class="single-icon d-lg-none">
+                            <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
+                                <span class="nk-icon-burger">
+                                    <span class="nk-t-1"></span>
+                                    <span class="nk-t-2"></span>
+                                    <span class="nk-t-3"></span>
+                                </span>
+                            </a>
+                        </li>                                
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- END: Navbar -->
+    </header>            
+    <!-- START: Navbar Mobile -->
+    <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-overlay-content d-lg-none">
+        <div class="nano">
+            <div class="nano-content">
+                <a href="" class="nk-nav-logo">
+                    <img src="" alt="" width="120">
+                </a>
+                <div class="nk-navbar-mobile-content">
+                    <ul class="nk-nav">
+                        <!-- Here will be inserted menu from [data-mobile-menu="#nk-nav-mobile"] -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Navbar Mobile -->
+    <div class="nk-main">
+        <div class="nk-gap-2"></div>  
+        <div class="container">
+        <!-- START: Latest voyages -->
+        <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Les derniers</span> voyages</span></h3>
+        <div class="nk-gap"></div>
+
+        <div class="nk-news-box">
+            <div class="nk-news-box-list">
+                <div class="nano">
+                    <div class="nano-content">                
+                        {% for voyage in latest_voyages %}
+                            <div class="nk-news-box-item nk-news-box-item-active">
+                                <div class="nk-news-box-item-img">
+                                    <img src="{{voyage.couverture_petit.url}}" alt="">
+                                </div>
+                                <img src="{{voyage.couverture_grand.url}}" alt="" class="nk-news-box-item-full-img">
+                                <h3 class="nk-news-box-item-title">{{voyage.nom_voyage}}</h3>
+                                <div class="nk-news-box-item-text">
+                                    <p>{{voyage.description_voyage}}</p>
+                                </div>
+                                <a href="" class="nk-news-box-item-url"></a>
+                                <div class="nk-news-box-item-date"><span class="fa fa-calendar"></span> {{voyage.date_voyage}}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="nk-news-box-each-info">
+                <div class="nano">
+                    <div class="nano-content">
+                        <!-- There will be inserted info about selected news-->
+                        <div class="nk-news-box-item-image">
+                            <img src="" alt="">
+                        </div>
+                        <!-- <h3 class="nk-news-box-item-title"></h3> -->
+                        <div class="nk-news-box-item-text">
+                            <p></p>
+                        </div>
+                        <a href="" class="nk-news-box-item-more"></a>
+                        <div class="nk-news-box-item-date">
+                            <span class="fa fa-calendar"></span> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nk-gap-2"></div>
+        <!-- END: Latest voyage -->
+        <div class="nk-gap-2"></div>
+        <div class="row vertical-gap">
+            <div class="col-lg-8">
+                <!-- START: Next -->
+                <h3 class="nk-decorated-h-2"><span><span class="text-main-1">Autres</span> </span></h3>
+                <div class="nk-gap"></div>
+                <div class="row vertical-gap">
+                    {% for voyage in voyages %}
+                        <div class="col-md-6">
+                            <div class="nk-product-cat">
+                                <a class="nk-product-image" href="{% url 'detail' voyage.slug %}">
+                                    <img src="{{voyage.couverture_moyen.url}}" alt="">
+                                </a>
+                                <div class="nk-product-cont">
+                                    <h3 class="nk-product-title h5"><a href="{% url 'detail' voyage.slug %}">{{voyage.nom_voyage}}</a></h3>
+                                    <div class="nk-gap-1"></div>
+                                    <div class="nk-product-rating" data-rating="3"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
+                                    <div class="nk-gap-1"></div>
+                                    <div class="nk-product-price">Ar {{voyage.prix_voyage}}.00</div>
+                                    <div class="nk-gap-1"></div>
+                                    <a href="{% url 'detail' voyage.slug %}" class="nk-btn nk-btn-rounded nk-btn-color-main-1 nk-btn-hover-color-main-4">Plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="nk-gap-3"></div>
+                <div class="text-center">
+                    <a href="{% url 'destination' %}" class="nk-btn nk-btn-rounded nk-align-center nk-btn-color-main-1 nk-btn-hover-color-main-4">Voir plus</a>
+                </div>
+                <!-- END: Next -->
+            </div>
+            <div class="col-lg-4">
+                <!-- START: Sidebar -->
+                <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky">
+                    <div class="nk-widget">
+                        <div class="nk-widget-content">
+                            <form action="{% url 'search' %}" method="GET" class="nk-form nk-form-style-1" novalidate="novalidate">
+                                <div class="input-group">
+                                    <input type="text" name="search_term" class="form-control" placeholder="Entrer destination">
+                                    <button class="nk-btn nk-btn-color-main-1">
+                                        <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fa" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path></svg><!-- <span class="fa fa-search"></span> -->
+                                    </button>                          
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </aside>
+                <!-- END: Sidebar -->
+            </div>
+        </div>
+    </div>
+    <div class="nk-gap-2"></div>
+
+    <!-- START: Footer -->
+    <footer class="nk-footer">
+        <div class="nk-copyright">
+            <div class="container">
+                <div class="nk-copyright-left">
+                    Copyright &copy; 2020.
+                </div>
+                <div class="nk-copyright-right">
+                    <ul class="nk-social-links-2"> 
+                        <li><a class="nk-social-facebook" href="#"><span class="fab fa-facebook"></span></a></li>
+                        <li><a class="nk-social-twitter" href="https://twitter.com/nkdevv" target="_blank"><span class="fab fa-twitter"></span></a></li>
+                        <li><a class="nk-social-pinterest" href="#"><span class="fab fa-pinterest-p"></span></a></li>
+                        <li><a class="nk-social-instagram" href="#"><span class="fab fa-instagram"></span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+</div>
+<img class="nk-page-background-fixed" src="{% static './images/bg.jpg' %}" alt="">
+{% endblock content %}
